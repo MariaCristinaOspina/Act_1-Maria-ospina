@@ -11,6 +11,7 @@ setup(
     py_modules=["actividad_1"],
     install_requires=[
         "pandas",
+        "requests",
         "matplotlib"
     ]
     
