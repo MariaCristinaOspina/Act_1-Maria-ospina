@@ -8,7 +8,7 @@ setup(
     author="Maria Ospina ",
     author_email="",
     description="",
-    py_modules=["actividad_1"],
+    py_modules=["actividad_1","actividad_2"],
     install_requires=[
         "pandas",
         "requests",
