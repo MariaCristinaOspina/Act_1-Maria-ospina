@@ -23,30 +23,35 @@ jobs:
         run: python -m venv venv
 
       - name: Activar entorno virtual y actualizar pip
+        shell: cmd
         run: |
-          call venv\Scripts\activate
+          venv\Scripts\activate.bat
           python -m pip install --upgrade pip
 
       - name: Instalar dependencias (incluyendo requests)
+        shell: cmd
         run: |
-          call venv\Scripts\activate
+          venv\Scripts\activate.bat
           pip install requests
 
       - name: Ejecutar script de la actividad 1
+        shell: cmd
         run: |
-          call venv\Scripts\activate
+          venv\Scripts\activate.bat
           python src/pad/actividad_1.py
 
       - name: Ejecutar script de la actividad 2
+        shell: cmd
         run: |
-          call venv\Scripts\activate
+          venv\Scripts\activate.bat
           python src/pad/actividad_2.py
 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Entrega actividad 1
-          commit_user_name: Maria cristina ospina Lopera [GitHub Actions]
+          commit_message: Entrega de actividades actualizadas
+          commit_user_name: Maria Cristina Ospina Lopera [GitHub Actions]
           commit_user_email: cristina.ospina@est.iudigital.edu.co
-          commit_author: Maria cristina ospina Lopera <cristina.ospina@est.iudigital.edu.co>
+          commit_author: Maria Cristina Ospina Lopera <cristina.ospina@est.iudigital.edu.co>
+
 
