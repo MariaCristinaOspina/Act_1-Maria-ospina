@@ -1,169 +1,210 @@
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns  # type: ignore
-from openpyxl import load_workbook
-from openpyxl.drawing.image import Image
 
-class Ejercicio:
-    def __init__(self):
-        self.ruta_excel = r"/workspaces/Act_1-Maria-ospina/src/pad/resultado.xlsx"
-        self.resultados = []  # Lista para guardar los resultados
+# Definir la ruta para guardar los resultados
+carpeta_resultados = os.path.join(os.getcwd(), "src", "pad", "carpeta_resultados")
+os.makedirs(carpeta_resultados, exist_ok=True)
 
-    def guardar_grafico(self, filename):
-        """Guarda el gráfico actual y lo cierra para liberar memoria"""
-        plt.savefig(filename, dpi=300, bbox_inches='tight')
-        plt.close()
+# Rutas de exportación
+ruta_csv = os.path.join(carpeta_resultados, "resultados.csv")
+ruta_excel = os.path.join(carpeta_resultados, "resultados.xlsx")
 
-    def resolver_puntos(self):
-        """Resuelve los puntos y guarda los resultados"""
+### Puntos de la tarea ###
 
-        # 🔹 Punto 1
-        array_10_29 = np.arange(10, 30)
-        self.resultados.append(["Punto 1", "Array 10-29", str(array_10_29.tolist())])
+# 1. Generar un array de NumPy con valores desde 10 hasta 29.
+ej1 = np.arange(10, 30)
+print("Punto 1:", ej1)
 
-        # 🔹 Punto 2
-        suma_total = np.ones((10, 10)).sum()
-        self.resultados.append(["Punto 2", "Suma Matriz 10x10", suma_total])
+# 2. Calcular la suma de todos los elementos en un array de NumPy de tamaño 10x10 lleno de unos.
+ej2 = np.ones((10, 10)).sum()
+print("Punto 2:", ej2)
 
-        # 🔹 Punto 3
-        array1 = np.random.randint(1, 11, size=5)
-        array2 = np.random.randint(1, 11, size=5)
-        producto_elemento = array1 * array2
-        self.resultados.append(["Punto 3", "Array 1", str(array1.tolist())])
-        self.resultados.append(["Punto 3", "Array 2", str(array2.tolist())])
-        self.resultados.append(["Punto 3", "Producto Elemento a Elemento", str(producto_elemento.tolist())])
+# 3. Producto elemento a elemento de dos arrays de tamaño 5 llenos de números aleatorios de 1 a 10.
+ej3_a = np.random.randint(1, 11, 5)
+ej3_b = np.random.randint(1, 11, 5)
+ej3_result = ej3_a * ej3_b
+print("Punto 3:", ej3_result)
 
-        # 🔹 Punto 4
-        i = np.arange(4).reshape(4, 1)
-        j = np.arange(4).reshape(1, 4)
-        matriz = i + j
-        try:
-            inv_matriz = np.linalg.inv(matriz)
-        except np.linalg.LinAlgError:
-            inv_matriz = np.linalg.pinv(matriz)
+# 4. Crear una matriz de 4x4, donde cada elemento es igual a i+j y calcular su pseudo-inversa.
+i = np.arange(4).reshape(4, 1)
+j = np.arange(4).reshape(1, 4)
+ej4 = i + j  # Matriz generada con i+j
+ej4_inv = np.linalg.pinv(ej4)  # Usamos la pseudo-inversa en lugar de la inversa
+print("Punto 4: Matriz generada con i+j\n", ej4)
+print("Punto 4: Pseudo-inversa de la matriz\n", ej4_inv)
 
-        self.resultados.append(["Punto 4", "Matriz 4x4 (i+j)", str(matriz.tolist())])
-        self.resultados.append(["Punto 4", "Matriz Inversa o Pseudo-inversa", str(inv_matriz.tolist())])
+# 5. Encontrar los valores máximo y mínimo en un array de 100 elementos aleatorios y mostrar sus índices.
+ej5 = np.random.rand(100)
+ej5_max, ej5_min = ej5.max(), ej5.min()
+ej5_idx_max, ej5_idx_min = ej5.argmax(), ej5.argmin()
+print("Punto 5: Max:", ej5_max, "(índice:", ej5_idx_max, ") Min:", ej5_min, "(índice:", ej5_idx_min, ")")
 
-        # 🔹 Punto 5
-        arr_aleatorio = np.random.rand(100)
-        self.resultados.append(["Punto 5", "Valor Máximo", arr_aleatorio.max()])
-        self.resultados.append(["Punto 5", "Valor Mínimo", arr_aleatorio.min()])
+# 6. Crear un array de tamaño 3x1 y uno de 1x3, sumarlos con broadcasting para obtener un array de 3x3.
+ej6_a = np.array([[1], [2], [3]])
+ej6_b = np.array([1, 2, 3])
+ej6_result = ej6_a + ej6_b
+print("Punto 6:\n", ej6_result)
 
-        # 🔹 Punto 6
-        array_3x1 = np.array([[1], [2], [3]])
-        array_1x3 = np.array([[10, 20, 30]])
-        self.resultados.append(["Punto 6", "Suma con Broadcasting", str((array_3x1 + array_1x3).tolist())])
+# 7. Extraer una submatriz 2x2 de una matriz 5x5 con números aleatorios.
+ej7 = np.random.randint(1, 100, (5, 5))
+ej7_submatriz = ej7[1:3, 2:4]
+print("Punto 7:\n", ej7_submatriz)
 
-        # 🔹 Punto 7
-        matriz_5x5 = np.arange(1, 26).reshape(5, 5)
-        self.resultados.append(["Punto 7", "Submatriz 2x2", str(matriz_5x5[1:3, 1:3].tolist())])
+# 8. Crear un array de ceros de tamaño 10 y cambiar los valores en los índices de 3 a 6 a 5.
+ej8 = np.zeros(10)
+ej8[3:7] = 5
+print("Punto 8:", ej8)
 
-        # 🔹 Punto 8
-        array_ceros = np.zeros(10)
-        array_ceros[3:7] = 5
-        self.resultados.append(["Punto 8", "Array de ceros modificado", str(array_ceros.tolist())])
+# 9. Invertir el orden de las filas en una matriz 3x3.
+ej9 = np.random.randint(1, 100, (3, 3))
+ej9_inv = ej9[::-1]
+print("Punto 9:\n", ej9_inv)
 
-        # 🔹 Punto 9
-        matriz_3x3 = np.arange(1, 10).reshape(3, 3)
-        self.resultados.append(["Punto 9", "Matriz con filas invertidas", str(matriz_3x3[::-1, :].tolist())])
+# 10. Seleccionar y mostrar elementos de un array aleatorio de tamaño 10 que sean mayores a 0.5.
+ej10 = np.random.rand(10)
+ej10_mayores = ej10[ej10 > 0.5]
+print("Punto 10:", ej10_mayores)
 
-        # 🔹 Punto 10
-        array_random = np.random.rand(10)
-        self.resultados.append(["Punto 10", "Elementos > 0.5", str(array_random[array_random > 0.5].tolist())])
+### Gráficos ###
 
-        # 🔹 Punto 11: Gráfico de dispersión
-        plt.figure()
-        plt.scatter(np.random.rand(100), np.random.rand(100), color='blue', alpha=0.5)
-        plt.title("Punto 11 - Gráfico de Dispersión")
-        self.guardar_grafico("grafico_dispersion.png")
+# 11. Gráfico de dispersión
+plt.figure()
+plt.scatter(np.random.rand(100), np.random.rand(100), alpha=0.7, color='blue')
+plt.title("Punto 11: Gráfico de Dispersión")
+ruta_dispersion = os.path.join(carpeta_resultados, "grafico_dispersion.png")
+plt.savefig(ruta_dispersion)
+plt.close()
 
-        # 🔹 Punto 12: Gráfico de dispersión con y = sin(x) + ruido
-        x = np.linspace(-2*np.pi, 2*np.pi, 100)
-        y = np.sin(x) + np.random.normal(0, 0.1, size=x.shape)
-        plt.figure()
-        plt.scatter(x, y, color='red', alpha=0.5)
-        plt.plot(x, np.sin(x), color='black', label="$y = sin(x)$")
-        plt.legend()
-        plt.title("Punto 12 - Dispersión con y=sin(x) + ruido")
-        self.guardar_grafico("grafico_seno.png")
+# 12. Gráfico de dispersión con función y = sin(x) + ruido
+x_12 = np.linspace(-2 * np.pi, 2 * np.pi, 100)
+y_12 = np.sin(x_12) + np.random.normal(0, 0.1, size=len(x_12))
+plt.figure()
+plt.scatter(x_12, y_12, alpha=0.7, color='red')
+plt.title("Punto 12: Dispersión con función seno")
+plt.savefig(os.path.join(carpeta_resultados, "grafico_seno.png"))
+plt.close()
 
-        # 🔹 Punto 13: Gráfico de contorno
-        X, Y = np.meshgrid(np.linspace(-5, 5, 100), np.linspace(-5, 5, 100))
-        Z = np.cos(X) + np.sin(Y)
-        plt.figure()
-        plt.contour(X, Y, Z, levels=20, cmap='viridis')
-        plt.colorbar()
-        plt.title("Punto 13 - Gráfico de Contorno")
-        self.guardar_grafico("grafico_contorno.png")
+# 13. Gráfico de contorno
+x_13 = np.linspace(-2, 2, 100)
+y_13 = np.linspace(-2, 2, 100)
+X, Y = np.meshgrid(x_13, y_13)
+Z = np.cos(X) + np.sin(Y)
+plt.figure()
+plt.contour(X, Y, Z, levels=20, cmap="coolwarm")
+plt.colorbar()
+plt.title("Punto 13: Gráfico de Contorno")
+plt.savefig(os.path.join(carpeta_resultados, "grafico_contorno.png"))
+plt.close()
 
-        # 🔹 Punto 14: Gráfico de dispersión con densidad
-        plt.figure()
-        sns.kdeplot(x=np.random.rand(100), y=np.random.rand(100), fill=True, cmap='Blues')
-        plt.title("Punto 14 - Dispersión con Densidad")
-        self.guardar_grafico("grafico_densidad.png")
+# 14. Gráfico de dispersión con 1000 puntos y colores según densidad
+x_14 = np.random.rand(1000)
+y_14 = np.random.rand(1000)
+colors_14 = np.sqrt(x_14**2 + y_14**2)  # Mejor representación de densidad
 
-        # 🔹 Punto 15: Gráfico de contorno lleno
-        plt.figure()
-        plt.contourf(X, Y, Z, levels=20, cmap='plasma')
-        plt.colorbar()
-        plt.title("Punto 15 - Contorno Lleno")
-        self.guardar_grafico("grafico_contorno_lleno.png")
+plt.figure()
+plt.scatter(x_14, y_14, c=colors_14, cmap="viridis", alpha=0.7)
+plt.colorbar(label="Densidad")
+plt.title("Punto 14: Dispersión con Densidad")
+plt.savefig(os.path.join(carpeta_resultados, "grafico_densidad.png"))
+plt.close()
 
-        # 🔹 Punto 16: Gráfico de dispersión con leyenda
-        plt.figure()
-        plt.scatter(x, y, color='red', label="$y = sin(x) + ruido$", alpha=0.5)
-        plt.plot(x, np.sin(x), color='black', label="$y = sin(x)$")
-        plt.xlabel("Eje X")
-        plt.ylabel("Eje Y")
-        plt.legend()
-        plt.title("Punto 16 - Dispersión con Leyenda")
-        self.guardar_grafico("grafico_sin_ruido.png")
+# 15. Contorno lleno
+plt.figure()
+plt.contourf(X, Y, Z, levels=20, cmap="coolwarm")
+plt.colorbar()
+plt.title("Punto 15: Gráfico de Contorno Lleno")
+plt.savefig(os.path.join(carpeta_resultados, "grafico_contorno_lleno.png"))
+plt.close()
 
-        # 🔹 Guardar resultados en Excel
-        df = pd.DataFrame(self.resultados, columns=["Punto", "Descripción", "Resultado"])
-        df.to_excel(self.ruta_excel, index=False)
+# 16. Dispersión con etiquetas y leyenda
+plt.figure()
+plt.scatter(x_12, y_12, alpha=0.7, color='red', label='y = sin(x) + ruido')
+plt.plot(x_12, np.sin(x_12), color='black', linestyle='dashed', label='y = sin(x)')
+plt.xlabel("Eje X")
+plt.ylabel("Eje Y")
+plt.title("Punto 16: Dispersión con etiquetas y leyenda")
+plt.legend()
+plt.savefig(os.path.join(carpeta_resultados, "grafico_etiquetas.png"))
+plt.close()
 
-        # 🔹 Insertar gráficos en Excel con títulos
-        wb = load_workbook(self.ruta_excel)
-        ws = wb.active
+# 17. Histograma con datos distribuidos normalmente
+data_17 = np.random.randn(1000)
+plt.figure()
+plt.hist(data_17, bins=30, alpha=0.7, color='blue', edgecolor='black')
+plt.xlabel("Valores de la distribución")  # Etiqueta del eje X
+plt.ylabel("Frecuencia")  # Etiqueta del eje Y
+plt.title("Punto 17: Histograma de distribución normal")
+plt.savefig(os.path.join(carpeta_resultados, "histograma_normal.png"))
+plt.close()
 
-        fila_imagen = len(self.resultados) + 6
+# 18. Histogramas combinados
+data_18a = np.random.randn(1000) * 0.5 + 2
+data_18b = np.random.randn(1000) * 0.5 + 5
+plt.figure()
+plt.hist(data_18a, bins=30, alpha=0.5, color='blue', label="Grupo 1")
+plt.hist(data_18b, bins=30, alpha=0.5, color='red', label="Grupo 2")
+plt.xlabel("Valores")
+plt.ylabel("Frecuencia")
+plt.legend()
+plt.title("Punto 18: Histogramas combinados")
+plt.savefig(os.path.join(carpeta_resultados, "histogramas_combinados.png"))
+plt.close()
 
-        for punto, archivo in [
-            ("Punto 11 - Gráfico de Dispersión", "grafico_dispersion.png"),
-            ("Punto 12 - Dispersión con y=sin(x) + ruido", "grafico_seno.png"),
-            ("Punto 13 - Gráfico de Contorno", "grafico_contorno.png"),
-            ("Punto 14 - Dispersión con Densidad", "grafico_densidad.png"),
-            ("Punto 15 - Contorno Lleno", "grafico_contorno_lleno.png"),
-            ("Punto 16 - Dispersión con Leyenda", "grafico_sin_ruido.png")
-        ]:
-            ws[f"A{fila_imagen}"] = punto
-            img = Image(archivo)
-            img.width, img.height = 400, 300
-            ws.add_image(img, f"B{fila_imagen + 1}")
-            fila_imagen += 17
+# 19. Histograma con diferentes bins
+plt.figure()
+plt.hist(data_17, bins=[10, 30, 50], alpha=0.7, color='purple', edgecolor='black')
+plt.xlabel("Valores")
+plt.ylabel("Frecuencia")
+plt.title("Punto 19: Histogramas con diferentes bins")
+plt.savefig(os.path.join(carpeta_resultados, "histograma_bins.png"))
+plt.close()
 
-        wb.save(self.ruta_excel)
-        print(f"Los resultados y gráficos han sido guardados en '{self.ruta_excel}'.")
+# 20. Histograma con línea de media
+plt.figure()
+plt.hist(data_17, bins=30, alpha=0.7, color='green', edgecolor='black')
+plt.axvline(data_17.mean(), color='black', linestyle='dashed', linewidth=2)
+plt.xlabel("Valores")
+plt.ylabel("Frecuencia")
+plt.title("Punto 20: Histograma con media")
+plt.savefig(os.path.join(carpeta_resultados, "histograma_media.png"))
+plt.close()
 
-# 🔹 Ejecutar la clase
-ej = Ejercicio()
-ej.resolver_puntos()
+# 21. Histogramas superpuestos para los dos sets de datos
+plt.figure()
+plt.hist(data_18a, bins=30, alpha=0.5, color='blue', label="Grupo 1")
+plt.hist(data_18b, bins=30, alpha=0.5, color='red', label="Grupo 2")
+plt.xlabel("Valores")
+plt.ylabel("Frecuencia")
+plt.legend()
+plt.title("Punto 21: Histogramas Superpuestos")
+plt.savefig(os.path.join(carpeta_resultados, "histograma_superpuesto.png"))
+plt.close()
 
-import openpyxl
 
-# Cargar el archivo Excel
-ruta_archivo = "/workspaces/Act_1-Maria-ospina/src/pad/resultado.xlsx"
-wb = openpyxl.load_workbook(ruta_archivo)
+print("Todos los resultados han sido guardados correctamente.")
 
-# Seleccionar la primera hoja
-hoja = wb.active
+# Guardar los resultados en un DataFrame y exportarlos a CSV y Excel
+datos = {
+    "Punto 1": [ej1.tolist()],
+    "Punto 2": [ej2],
+    "Punto 3": [ej3_result.tolist()],
+    "Punto 4 - Matriz Original": [ej4.tolist()],
+    "Punto 4 - Pseudo-Inversa": [ej4_inv.tolist()],
+    "Punto 5 - Máximo": [ej5_max],
+    "Punto 5 - Mínimo": [ej5_min],
+    "Punto 5 - Índice Máx": [ej5_idx_max],
+    "Punto 5 - Índice Mín": [ej5_idx_min],
+    "Punto 6": [ej6_result.tolist()],
+    "Punto 7": [ej7_submatriz.tolist()],
+    "Punto 8": [ej8.tolist()],
+    "Punto 9": [ej9_inv.tolist()],
+    "Punto 10": [ej10_mayores.tolist()]
+}
 
-# Leer algunas celdas (por ejemplo, las primeras 5 filas y 3 columnas)
-for fila in hoja.iter_rows(min_row=1, max_row=5, min_col=1, max_col=3, values_only=True):
-    print(fila)
+df = pd.DataFrame.from_dict(datos, orient='index', columns=["Resultado"])
+df.to_csv(ruta_csv, index=True)
+df.to_excel(ruta_excel, index=True)
 
-# Cerrar el archivo
-wb.close()
+print("Resultados guardados en CSV y Excel correctamente.")
