@@ -7,9 +7,14 @@ import matplotlib.pyplot as plt
 carpeta_resultados = os.path.join(os.getcwd(), "src", "pad", "carpeta_resultados")
 os.makedirs(carpeta_resultados, exist_ok=True)
 
+# Función para agregar texto en el gráfico
+def agregar_texto(titulo, punto):
+    plt.text(0.5, 1.05, f"{titulo}\n{punto}", fontsize=12, ha='center', transform=plt.gca().transAxes, weight='bold')
+
 # Rutas de exportación
 ruta_csv = os.path.join(carpeta_resultados, "resultados.csv")
 ruta_excel = os.path.join(carpeta_resultados, "resultados.xlsx")
+
 
 ### Puntos de la tarea ###
 
@@ -72,9 +77,8 @@ print("Punto 10:", ej10_mayores)
 # 11. Gráfico de dispersión
 plt.figure()
 plt.scatter(np.random.rand(100), np.random.rand(100), alpha=0.7, color='blue')
-plt.title("Punto 11: Gráfico de Dispersión")
-ruta_dispersion = os.path.join(carpeta_resultados, "grafico_dispersion.png")
-plt.savefig(ruta_dispersion)
+agregar_texto("Gráfico de Dispersión", "Punto 11")
+plt.savefig(os.path.join(carpeta_resultados, "grafico_dispersion.png"))
 plt.close()
 
 # 12. Gráfico de dispersión con función y = sin(x) + ruido
@@ -82,7 +86,7 @@ x_12 = np.linspace(-2 * np.pi, 2 * np.pi, 100)
 y_12 = np.sin(x_12) + np.random.normal(0, 0.1, size=len(x_12))
 plt.figure()
 plt.scatter(x_12, y_12, alpha=0.7, color='red')
-plt.title("Punto 12: Dispersión con función seno")
+agregar_texto("Dispersión con función seno", "Punto 12")
 plt.savefig(os.path.join(carpeta_resultados, "grafico_seno.png"))
 plt.close()
 
@@ -94,19 +98,18 @@ Z = np.cos(X) + np.sin(Y)
 plt.figure()
 plt.contour(X, Y, Z, levels=20, cmap="coolwarm")
 plt.colorbar()
-plt.title("Punto 13: Gráfico de Contorno")
+agregar_texto("Gráfico de Contorno", "Punto 13")
 plt.savefig(os.path.join(carpeta_resultados, "grafico_contorno.png"))
 plt.close()
 
 # 14. Gráfico de dispersión con 1000 puntos y colores según densidad
 x_14 = np.random.rand(1000)
 y_14 = np.random.rand(1000)
-colors_14 = np.sqrt(x_14**2 + y_14**2)  # Mejor representación de densidad
-
+colors_14 = np.sqrt(x_14**2 + y_14**2)
 plt.figure()
 plt.scatter(x_14, y_14, c=colors_14, cmap="viridis", alpha=0.7)
 plt.colorbar(label="Densidad")
-plt.title("Punto 14: Dispersión con Densidad")
+agregar_texto("Dispersión con Densidad", "Punto 14")
 plt.savefig(os.path.join(carpeta_resultados, "grafico_densidad.png"))
 plt.close()
 
@@ -114,7 +117,7 @@ plt.close()
 plt.figure()
 plt.contourf(X, Y, Z, levels=20, cmap="coolwarm")
 plt.colorbar()
-plt.title("Punto 15: Gráfico de Contorno Lleno")
+agregar_texto("Gráfico de Contorno Lleno", "Punto 15")
 plt.savefig(os.path.join(carpeta_resultados, "grafico_contorno_lleno.png"))
 plt.close()
 
@@ -124,8 +127,8 @@ plt.scatter(x_12, y_12, alpha=0.7, color='red', label='y = sin(x) + ruido')
 plt.plot(x_12, np.sin(x_12), color='black', linestyle='dashed', label='y = sin(x)')
 plt.xlabel("Eje X")
 plt.ylabel("Eje Y")
-plt.title("Punto 16: Dispersión con etiquetas y leyenda")
 plt.legend()
+agregar_texto("Dispersión con etiquetas y leyenda", "Punto 16")
 plt.savefig(os.path.join(carpeta_resultados, "grafico_etiquetas.png"))
 plt.close()
 
@@ -133,9 +136,9 @@ plt.close()
 data_17 = np.random.randn(1000)
 plt.figure()
 plt.hist(data_17, bins=30, alpha=0.7, color='blue', edgecolor='black')
-plt.xlabel("Valores de la distribución")  # Etiqueta del eje X
-plt.ylabel("Frecuencia")  # Etiqueta del eje Y
-plt.title("Punto 17: Histograma de distribución normal")
+plt.xlabel("Valores de la distribución")
+plt.ylabel("Frecuencia")
+agregar_texto("Histograma de distribución normal", "Punto 17")
 plt.savefig(os.path.join(carpeta_resultados, "histograma_normal.png"))
 plt.close()
 
@@ -148,7 +151,7 @@ plt.hist(data_18b, bins=30, alpha=0.5, color='red', label="Grupo 2")
 plt.xlabel("Valores")
 plt.ylabel("Frecuencia")
 plt.legend()
-plt.title("Punto 18: Histogramas combinados")
+agregar_texto("Histogramas combinados", "Punto 18")
 plt.savefig(os.path.join(carpeta_resultados, "histogramas_combinados.png"))
 plt.close()
 
@@ -157,7 +160,7 @@ plt.figure()
 plt.hist(data_17, bins=[10, 30, 50], alpha=0.7, color='purple', edgecolor='black')
 plt.xlabel("Valores")
 plt.ylabel("Frecuencia")
-plt.title("Punto 19: Histogramas con diferentes bins")
+agregar_texto("Histograma con diferentes bins", "Punto 19")
 plt.savefig(os.path.join(carpeta_resultados, "histograma_bins.png"))
 plt.close()
 
@@ -167,7 +170,7 @@ plt.hist(data_17, bins=30, alpha=0.7, color='green', edgecolor='black')
 plt.axvline(data_17.mean(), color='black', linestyle='dashed', linewidth=2)
 plt.xlabel("Valores")
 plt.ylabel("Frecuencia")
-plt.title("Punto 20: Histograma con media")
+agregar_texto("Histograma con media", "Punto 20")
 plt.savefig(os.path.join(carpeta_resultados, "histograma_media.png"))
 plt.close()
 
@@ -178,12 +181,21 @@ plt.hist(data_18b, bins=30, alpha=0.5, color='red', label="Grupo 2")
 plt.xlabel("Valores")
 plt.ylabel("Frecuencia")
 plt.legend()
-plt.title("Punto 21: Histogramas Superpuestos")
+agregar_texto("Histogramas Superpuestos", "Punto 21")
 plt.savefig(os.path.join(carpeta_resultados, "histograma_superpuesto.png"))
 plt.close()
 
+print("Todos los gráficos han sido generados con títulos dentro de la imagen.")
 
-print("Todos los resultados han sido guardados correctamente.")
+
+
+
+
+
+
+
+
+
 
 # Guardar los resultados en un DataFrame y exportarlos a CSV y Excel
 datos = {
