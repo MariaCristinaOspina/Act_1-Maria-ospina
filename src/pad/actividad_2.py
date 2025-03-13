@@ -187,16 +187,6 @@ plt.close()
 
 print("Todos los gráficos han sido generados con títulos dentro de la imagen.")
 
-
-
-
-
-
-
-
-
-
-
 # Guardar los resultados en un DataFrame y exportarlos a CSV y Excel
 datos = {
     "Punto 1": [ej1.tolist()],
