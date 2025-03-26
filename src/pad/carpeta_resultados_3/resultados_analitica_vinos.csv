@@ -1,0 +1,203 @@
+Sección,Descripción,Resultado
+Punto 1,DataFrame con Granadilla y Tomates," Granadilla  Tomates
+         55      105"
+Punto 2,Ventas de Frutas,"             Granadilla  Tomates
+ventas 2021          30      100
+ventas 2022          59      150"
+Punto 3,Serie de Utensilios de Cocina,"Cuchara     3 unidades
+Tenedor     2 unidades
+Cuchillo    4 unidades
+Plato       5 unidades"
+Punto 7,Precio promedio del vino,33.13
+Punto 8,Precio más alto del vino,2300.00
+Punto 10,Vino más caro de California,"Unnamed: 0.1                                                13318
+Unnamed: 0                                                  13318
+country                                                        US
+description     The nose on this single-vineyard wine from a s...
+designation                                   Roger Rose Vineyard
+points                                                         91
+price                                                      2013.0
+province                                               California
+region_1                                              Arroyo Seco
+region_2                                            Central Coast
+variety                                                Chardonnay
+winery                                                      Blair"
+Punto 11,Tipos de uva más comunes en California,"variety
+Pinot Noir                           7633
+Cabernet Sauvignon                   7452
+Chardonnay                           6536
+Zinfandel                            3691
+Syrah                                2705
+Merlot                               2293
+Sauvignon Blanc                      2220
+Red Blend                            1783
+Bordeaux-style Red Blend             1130
+Petite Sirah                          830
+Viognier                              549
+Sparkling Blend                       538
+RosÃ©                                 490
+RhÃ´ne-style Red Blend                471
+Cabernet Franc                        434
+Pinot Grigio                          403
+White Blend                           378
+Sangiovese                            374
+Riesling                              366
+Grenache                              295
+Meritage                              230
+Pinot Gris                            229
+Barbera                               205
+GewÃ¼rztraminer                       201
+RhÃ´ne-style White Blend              194
+Tempranillo                           179
+Malbec                                165
+Cabernet Blend                        148
+Shiraz                                105
+MourvÃ¨dre                            100
+Port                                   99
+Chenin Blanc                           99
+Roussanne                              98
+FumÃ© Blanc                            97
+Moscato                                94
+Pinot Blanc                            93
+G-S-M                                  79
+Primitivo                              79
+AlbariÃ±o                              77
+Petit Verdot                           71
+Grenache Blanc                         56
+Muscat Canelli                         49
+Cabernet Sauvignon-Syrah               45
+Semillon-Sauvignon Blanc               43
+Champagne Blend                        41
+Charbono                               40
+SÃ©millon                              39
+Petite Verdot                          38
+Dolcetto                               35
+Marsanne                               31
+Tannat                                 30
+Cabernet Sauvignon-Merlot              28
+Orange Muscat                          26
+Muscat                                 26
+Syrah-Grenache                         26
+White Riesling                         25
+Carignane                              25
+Nebbiolo                               25
+Bordeaux-style White Blend             24
+Marsanne-Roussanne                     24
+Verdelho                               23
+Syrah-Cabernet                         23
+Sauvignon Blanc-Semillon               22
+Grenache-Syrah                         21
+Claret                                 20
+Malvasia Bianca                        19
+Pinotage                               17
+GrÃ¼ner Veltliner                      17
+Pinot Meunier                          15
+Merlot-Cabernet Sauvignon              15
+Vermentino                             15
+Cabernet Sauvignon-Cabernet Franc      14
+Teroldego                              13
+Cinsault                               12
+Muscat Blanc                           12
+Black Muscat                           12
+Syrah-Petite Sirah                     12
+Aglianico                              11
+Carignan                               11
+Graciano                               10
+Arneis                                 10
+Montepulciano                          10
+Colombard                               9
+Touriga Nacional                        9
+Tempranillo-Cabernet Sauvignon          8
+Tempranillo Blend                       8
+Syrah-Cabernet Sauvignon                8
+Lagrein                                 7
+Mataro                                  7
+Chenin Blanc-Viognier                   7
+Chardonnay-Viognier                     7
+Mission                                 7
+Alicante Bouschet                       7
+Scheurebe                               6
+Traminer                                6
+Tocai Friulano                          6
+Cortese                                 6
+Viognier-Roussanne                      6
+Syrah-Viognier                          6
+Cabernet Merlot                         6
+Dornfelder                              6
+AligotÃ©                                5
+Roussanne-Viognier                      5
+Cabernet Sauvignon-Sangiovese           5
+Johannisberg Riesling                   5
+Garnacha                                5
+Syrah-Tempranillo                       4
+Chardonnay-AlbariÃ±o                    4
+Merlot-Cabernet Franc                   4
+Black Monukka                           4
+Cabernet Franc-Merlot                   4
+Cabernet Sauvignon-CarmenÃ¨re           4
+Symphony                                4
+Cabernet Sauvignon-Shiraz               3
+Vernaccia                               3
+Sagrantino                              3
+Grenache Blend                          3
+Chardonnay-Semillon                     3
+TorrontÃ©s                              3
+Shiraz-Cabernet Sauvignon               3
+Sauvignon Gris                          3
+Sylvaner                                3
+Edelzwicker                             3
+Debit                                   3
+ValdiguiÃ©                              3
+Moscato Giallo                          3
+Syrah-Cabernet Franc                    3
+Shiraz-Viognier                         2
+Viognier-Marsanne                       2
+Sangiovese-Syrah                        2
+Nero d'Avola                            2
+Counoise                                2
+Monastrell                              2
+CarmenÃ¨re                              2
+Sangiovese-Cabernet Sauvignon           2
+Marsanne-Viognier                       2
+Semillon-Chardonnay                     2
+Aleatico                                2
+Touriga Franca                          2
+AlvarelhÃ£o                             2
+Pinot Nero                              2
+Roussanne-Marsanne                      2
+Roussanne-Grenache Blanc                2
+Grenache-MourvÃ¨dre                     2
+Cabernet                                2
+Negroamaro                              1
+Ugni Blanc                              1
+Syrah-Merlot                            1
+Syrah-MourvÃ¨dre                        1
+Muscat d'Alexandrie                     1
+Fiano                                   1
+Viognier-Chardonnay                     1
+Trousseau Gris                          1
+Refosco                                 1
+Cabernet Pfeffer                        1
+Viognier-Grenache Blanc                 1
+Sherry                                  1
+Pinot-Chardonnay                        1
+Malbec-Syrah                            1
+Gamay Noir                              1
+Pinot Blanc-Chardonnay                  1
+Merlot-Malbec                           1
+Madeira Blend                           1
+Sauvignon MusquÃ©                       1
+Cabernet Sauvignon-Malbec               1
+Viognier-ValdiguiÃ©                     1
+Pinot Grigio-Chardonnay                 1"
+Punto 12,Top 10 tipos de uva más comunes en California,"variety
+Pinot Noir                  7633
+Cabernet Sauvignon          7452
+Chardonnay                  6536
+Zinfandel                   3691
+Syrah                       2705
+Merlot                      2293
+Sauvignon Blanc             2220
+Red Blend                   1783
+Bordeaux-style Red Blend    1130
+Petite Sirah                 830"
